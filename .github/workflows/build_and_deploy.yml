@@ -19,13 +19,6 @@ jobs:
     - name: Build and test with Maven
       run: mvn clean package
 
-    # Finally, deploy the container to App Service
-    - uses: azure/webapps-deploy@v1
-      with:
-        app-name: 'spring-one-demo'
-        publish-profile: ${{ secrets.CREDENTIALS }}
-        package: 'target/app.jar'
-
     - uses: azure/webapps-deploy@v1
       with:
         app-name: 'freebergwindowsjavase'
