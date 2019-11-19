@@ -17,6 +17,7 @@ public class TodoApplication extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        System.out.println("%%%%%%%%\n%%%%%%%%\n%%%%%%%%\n%%%%%%%% Test message from standard output %%%%%%%%\n%%%%%%%%\n%%%%%%%%\n%%%%%%%%");
         return application.sources(TodoApplication.class);
     }
 

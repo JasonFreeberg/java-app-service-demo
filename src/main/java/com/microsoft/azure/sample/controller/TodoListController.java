@@ -29,6 +29,7 @@ public class TodoListController {
         final Map<String, Object> model = new HashMap<String, Object>();
         model.put("id", UUID.randomUUID().toString());
         model.put("content", "home");
+        System.out.println("%%%%%%%%\n%%%%%%%%\n%%%%%%%%\n%%%%%%%% Test message from standard output %%%%%%%%\n%%%%%%%%\n%%%%%%%%\n%%%%%%%%");
         return model;
     }
 
@@ -38,6 +39,7 @@ public class TodoListController {
     @RequestMapping(value = "/api/todolist/{index}",
             method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> getTodoItem(@PathVariable("index") String index) {
+        System.out.println("%%%%%%%%\n%%%%%%%%\n%%%%%%%%\n%%%%%%%% Test message from standard output %%%%%%%%\n%%%%%%%%\n%%%%%%%%\n%%%%%%%%");
         try {
             return new ResponseEntity<TodoItem>(todoItemRepository.findOne(index), HttpStatus.OK);
         } catch (Exception e) {
@@ -50,6 +52,7 @@ public class TodoListController {
      */
     @RequestMapping(value = "/api/todolist", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> getAllTodoItems() {
+        System.out.println("%%%%%%%%\n%%%%%%%%\n%%%%%%%%\n%%%%%%%% Test message from standard output %%%%%%%%\n%%%%%%%%\n%%%%%%%%\n%%%%%%%%");
         try {
             return new ResponseEntity<Iterable<TodoItem>>(todoItemRepository.findAll(), HttpStatus.OK);
         } catch (Exception e) {
