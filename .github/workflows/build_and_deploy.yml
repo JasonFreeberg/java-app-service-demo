@@ -3,7 +3,7 @@ name: Build and deploy a Spring app to App Service
 on:
   push:
     branches:
-      msi-test
+    - "msi-test"
 
 jobs:
   build:
@@ -29,5 +29,5 @@ jobs:
     - uses: azure/webapps-deploy@v1
       with:
         app-name: 'freebergwindowsjavase'
-        publish-profile: ${{ secrets.PUB_PROFILE_FREEBERGWINDOWSJAVASE }}
-        package: 'target/app.jar'
+        publish-profile: ${{ secrets.PUB_PROFILE_FREEBERGTOMCATTEST }}
+        package: 'target/app.war'

@@ -7,7 +7,7 @@
     <groupId>com.microsoft.azure</groupId>
     <artifactId>java-app-service-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>java-app-servrice-demo</name>
     <description>A todo list application uses AngularJS and Azure DocumentDB Spring boot starter</description>
@@ -50,6 +50,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>  <!-- This is important. -->
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
