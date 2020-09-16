@@ -1,4 +1,4 @@
-target/
+project/target/
 !.mvn/wrapper/maven-wrapper.jar
 
 # Compiled class file
