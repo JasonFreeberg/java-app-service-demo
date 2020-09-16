@@ -8,27 +8,27 @@ on:
     branches:
     - dockerized-jar
 
-  jobs:
-    build-and-deploy:
-      runs-on: 'ubuntu-latest'
+jobs:
+  build-and-deploy:
+    runs-on: 'ubuntu-latest'
 
-      steps:
-      - uses: actions/checkout@master
+    steps:
+    - uses: actions/checkout@master
 
-      - uses: azure/docker-login@v1
-        with:
-          login-server: index.docker.io
-          username: ${{ secrets.AzureAppService_ContainerUsername_b7fc9dd60f6346b59f644c589bcbb1c9 }}
-          password: ${{ secrets.AzureAppService_ContainerPassword_737c6cfd53bb4cca9d690ea60008c950 }}
+    - uses: azure/docker-login@v1
+      with:
+        login-server: index.docker.io
+        username: ${{ secrets.AzureAppService_ContainerUsername_b7fc9dd60f6346b59f644c589bcbb1c9 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_737c6cfd53bb4cca9d690ea60008c950 }}
 
-      - run: |
-          docker build . -t index.docker.io/javaignitedemo:${{ github.sha }}
-          docker push index.docker.io/javaignitedemo:${{ github.sha }}
+    - run: |
+        docker build . -t index.docker.io/javaignitedemo:${{ github.sha }}
+        docker push index.docker.io/javaignitedemo:${{ github.sha }}
 
-      - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'freeberg-deployment-center'
-          slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_a063e3b7cb8643caa20c8f0e46b704ef }}
-          images: 'index.docker.io/javaignitedemo:${{ github.sha }}
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'freeberg-deployment-center'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_a063e3b7cb8643caa20c8f0e46b704ef }}
+        images: 'index.docker.io/javaignitedemo:${{ github.sha }}
