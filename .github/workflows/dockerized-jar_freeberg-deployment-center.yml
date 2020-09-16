@@ -25,12 +25,6 @@ on:
           docker build . -t index.docker.io/javaignitedemo:${{ github.sha }}
           docker push index.docker.io/javaignitedemo:${{ github.sha }}
 
-      - name: Restore NuGet packages
-        run: nuget restore
-
-      - name: Publish to folder
-        run: msbuild /p:Configuration=Release /p:DeployOnBuild=true /t:WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=./published/ /p:PackageAsSingleFile=false
-
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
