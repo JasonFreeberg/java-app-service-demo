@@ -31,4 +31,4 @@ jobs:
         app-name: 'freeberg-deployment-center'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_a063e3b7cb8643caa20c8f0e46b704ef }}
-        images: 'index.docker.io/javaignitedemo:${{ github.sha }}
+        images: 'index.docker.io/javaignitedemo:${{ github.sha }}'
