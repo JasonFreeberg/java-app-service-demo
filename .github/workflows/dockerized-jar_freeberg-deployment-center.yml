@@ -6,7 +6,7 @@ name: Build and deploy container app to Azure Web App - freeberg-deployment-cent
 on:
   push:
     branches:
-      - dockerized-jar
+    - dockerized-jar
 
   jobs:
     build-and-deploy:
