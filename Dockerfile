@@ -6,17 +6,17 @@ ENV PORT 8080
 ENV SSH_PORT 2222 
 
 # Install ssh server, set username/password
-RUN apk add openssh \
-     && echo "root:Docker!" | chpasswd 
+# RUN apk add openssh \
+#      && echo "root:Docker!" | chpasswd 
 
 # Copy the application JAR, the SSH config file, and the startup script
-COPY ./target/app.jar /usr/src/
-COPY startup/sshd_config /etc/ssh/
-COPY startup/startup.sh /opt/startup/
-COPY startup/ssh_setup.sh /opt/startup/
+COPY ./target/app.jar      /usr/src/
+# COPY startup/sshd_config   /etc/ssh/sshd_config
+# COPY startup/startup.sh    /opt/startup/startup.sh
+# COPY startup/ssh_setup.sh  /opt/startup/ssh_setup.sh
 
-RUN chmod -R +x /opt/startup/ssh_setup.sh \
-   && (sleep 1;/opt/startup/ssh_setup.sh 2>&1 > /dev/null)
+# RUN chmod -R +x /opt/startup/ssh_setup.sh \
+#    && (sleep 1;/opt/startup/ssh_setup.sh 2>&1 > /dev/null)
 
 WORKDIR /usr/src
 EXPOSE 8080 2222
