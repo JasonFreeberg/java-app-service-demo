@@ -17,7 +17,7 @@ jobs:
 
     - uses: azure/docker-login@v1
       with:
-        login-server: https://index.docker.io/v1/
+        login-server: https://index.docker.io/
         username: ${{ secrets.AzureAppService_ContainerUsername_10761ca1b71443b19c009420fd52c126 }}
         password: ${{ secrets.AzureAppService_ContainerPassword_70489b92e4fe4e1a9858f759b1fad8f4 }}
 
