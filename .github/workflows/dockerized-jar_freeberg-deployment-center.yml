@@ -8,33 +8,27 @@ on:
     branches:
       - dockerized-jar
 
-  jobs:
-    build-and-deploy:
-      runs-on: 'ubuntu-latest'
+jobs:
+  build-and-deploy:
+    runs-on: 'ubuntu-latest'
 
-      steps:
-      - uses: actions/checkout@master
+    steps:
+    - uses: actions/checkout@master
 
-      - uses: azure/docker-login@v1
-        with:
-          login-server: index.docker.io
-          username: ${{ secrets.AzureAppService_ContainerUsername_10761ca1b71443b19c009420fd52c126 }}
-          password: ${{ secrets.AzureAppService_ContainerPassword_70489b92e4fe4e1a9858f759b1fad8f4 }}
+    - uses: azure/docker-login@v1
+      with:
+        login-server: index.docker.io
+        username: ${{ secrets.AzureAppService_ContainerUsername_10761ca1b71443b19c009420fd52c126 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_70489b92e4fe4e1a9858f759b1fad8f4 }}
 
-        - run: |
-          docker build . -t index.docker.io/javaignitedemo:${{ github.sha }}
-          docker push index.docker.io/javaignitedemo:${{ github.sha }}
+    - run: |
+        docker build . -t index.docker.io/javaignitedemo:${{ github.sha }}
+        docker push index.docker.io/javaignitedemo:${{ github.sha }}
 
-      - name: Restore NuGet packages
-        run: nuget restore
-
-      - name: Publish to folder
-        run: msbuild /p:Configuration=Release /p:DeployOnBuild=true /t:WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=./published/ /p:PackageAsSingleFile=false
-
-      - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'freeberg-deployment-center'
-          slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_3e2a6bd7e6a1482fab14311e6385d7f0 }}
-          images: 'index.docker.io/javaignitedemo:${{ github.sha }}
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'freeberg-deployment-center'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_3e2a6bd7e6a1482fab14311e6385d7f0 }}
+        images: 'index.docker.io/javaignitedemo:${{ github.sha }}'
