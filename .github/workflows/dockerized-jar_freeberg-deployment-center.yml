@@ -22,8 +22,8 @@ jobs:
         password: ${{ secrets.AzureAppService_ContainerPassword_70489b92e4fe4e1a9858f759b1fad8f4 }}
 
     - run: |
-        docker build . -t index.docker.io/javaignitedemo:${{ github.sha }}
-        docker push index.docker.io/jasonfreeberg/javaignitedemo:${{ github.sha }}
+        docker build . -t jasonfreeberg/javaignitedemo:${{ github.sha }}
+        docker push jasonfreeberg/javaignitedemo:${{ github.sha }}
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
