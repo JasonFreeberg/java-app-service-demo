@@ -45,6 +45,7 @@ public class TodoListController {
         try {
             return new ResponseEntity<TodoItem>(todoItemRepository.findOne(index), HttpStatus.OK);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<String>(index + " not found", HttpStatus.NOT_FOUND);
         }
     }
@@ -57,6 +58,7 @@ public class TodoListController {
         try {
             return new ResponseEntity<List<TodoItem>>(todoItemRepository.findAll(), HttpStatus.OK);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<String>("Nothing found", HttpStatus.NOT_FOUND);
         }
     }
@@ -71,6 +73,7 @@ public class TodoListController {
             todoItemRepository.save(item);
             return new ResponseEntity<String>("Entity created", HttpStatus.CREATED);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<String>("Entity creation failed", HttpStatus.CONFLICT);
         }
     }
@@ -85,6 +88,7 @@ public class TodoListController {
             todoItemRepository.save(item);
             return new ResponseEntity<String>("Entity updated", HttpStatus.OK);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<String>("Entity updating failed", HttpStatus.NOT_FOUND);
         }
     }
@@ -98,6 +102,7 @@ public class TodoListController {
             todoItemRepository.delete(id);
             return new ResponseEntity<String>("Entity deleted", HttpStatus.OK);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<String>("Entity deletion failed", HttpStatus.NOT_FOUND);
         }
     }
